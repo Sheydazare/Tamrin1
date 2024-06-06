@@ -1,42 +1,96 @@
 
-
-#include<iostream>
-#include<cmath>
+#include <iostream>
 using namespace std;
-struct Point{
-    int x,y,z;
-};
-float calDistance(Point p1,Point p2){
-    
-    return sqrt(pow(p2.x-p1.x,2)+pow(p2.y-p2.y,2)+pow(p2.z-p1.z,2));
-
-}
-
-Point getpoint(){
-Point myp;
-cout<<"enter  x y z for point:"<<endl;
-cin>>myp.x>>myp.y>>myp.z;
-
-return myp;
-}
-void z(Point p1,Point p2){
-    if(p1.z=p2.z){
-        cout<< " p1,p2 dar yek safhe hastan!"<<endl;
-        if(p1.x=p2.x){
-            cout<<"har do dar safhe y";
-        }else if(p1.y=p2.y){
-            cout<<"har do dar safhe x";
-        }
-    }else{
-        cout<<" p1,p2 dar yek safhe nstan!";
+void get(int n,int a[]){
+    for(int i=0;i<n;i++){
+        cin>>a[i];
     }
+}
+
+void print(int n,int a[]){
+    for(int i=0;i<n;i++){
+        cout<<"["<<i<<"]="<<a[i]<<endl;
+    }
+}
+
+  int findmax(int n,int a[]){
+    int max=a[0];
+    for(int i=1;i<n;i++){
+        if(a[i]>max){
+            max=a[i];
+        }
+    }
+    return max;
+}
+
+   int findmin(int n,int a[]){
+     int min=a[0];
+    for(int i=1;i<n;i++){
+        if(a[i]<min){
+            min=a[i];
+        }
+    }
+    return min;
+}
+
+int sum(int n,int a[]){
+    int b=0;
+  for(int i=0;i<n;i++){
+     b+=a[i];
+    }
+return b;
+}
+
+int avarage(int n,int a[]){
+       int b=sum( n,a);
+return b/n;
+}
+void sort(int n,int a[]){
+  
+     for(int i=0;i<n;i++){
+        
+        for(int j=0;j<n-i;j++){ 
+            
+          if(a[j]>a[j+1]){
+              
+            int temp= a[j];
+            a[j]=a[j+1];
+            a[j+1]=temp;
+          } 
+        } 
+    }
+}
+
+int index(int n,int value,int a[]){
+   for(int i=0;i<n;i++){
+       if(a[i]==value){
+           return i;
+       }
+    
+   }
+   return -1;
 }
 int main()
 {
-    Point p1=getpoint();
-    Point p2=getpoint();
-    float d=calDistance(p1,p2);
-    cout<<"D:"<<d<<endl;
-    z(p1,p2);
-    return 0;
+   int n,value;
+   cout<<"how many numbers do you want enter?";
+   cin>>n;
+   int a[n],b[n];
+   cout<<"enter numbers:"<<endl;
+   get(n,a);
+   print(n,a);
+   cout<<"max is:"<<findmax(n,a)<<endl;
+   cout<<"min is:"<<findmin(n,a)<<endl;
+   cout<<"sum is:"<<sum(n,a)<<endl;
+   cout<<"avarage is:"<<avarage(n,a)<<endl;
+   cout<<"What is the index value?"<<endl;
+   cin>>value;
+   cout<<"index:"<<index(n,value,a)<<endl;
+   cout<<"Numbers in order from smallest to largest:"<<endl;
+   sort(n,a);
+   for(int i=0;i<n;i++){
+       b[i]=a[i];
+   }
+   print(n,b);
+        return 0;
 }
